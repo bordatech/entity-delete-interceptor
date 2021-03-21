@@ -55,7 +55,7 @@ namespace Borda.EntityDeleteInterceptor
         private void InvokeInterceptorServices(DbContext context)
         {
             var deletedEntityEntries = context.ChangeTracker.Entries()
-                .Where(i => i.State == EntityState.Deleted);;
+                .Where(i => i.State == EntityState.Deleted);
 
             foreach (var entityEntry in deletedEntityEntries)
             {
