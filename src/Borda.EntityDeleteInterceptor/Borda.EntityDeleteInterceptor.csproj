@@ -2,6 +2,17 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <Version>0.0.1</Version>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>Borda.EntityDeleteInterceptor.xml</DocumentationFile>
+      <NoWarn>1701;1702;1591</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>Borda.EntityDeleteInterceptor.xml</DocumentationFile>
+      <NoWarn>1701;1702;1591</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
