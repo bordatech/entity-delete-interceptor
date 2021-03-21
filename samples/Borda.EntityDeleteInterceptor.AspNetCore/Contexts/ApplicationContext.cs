@@ -8,7 +8,7 @@ namespace Borda.EntityDeleteInterceptor.AspNetCore.Contexts
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public ApplicationContext(DbContextOptions options, IServiceProvider serviceProvider) 
+        public ApplicationContext(DbContextOptions options, IServiceProvider serviceProvider)
             : base(options)
         {
             _serviceProvider = serviceProvider;

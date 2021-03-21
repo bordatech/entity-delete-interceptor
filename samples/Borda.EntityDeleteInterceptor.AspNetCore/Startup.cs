@@ -14,11 +14,8 @@ namespace Borda.EntityDeleteInterceptor.AspNetCore
         {
             services.AddControllers();
 
-            services.AddDbContext<ApplicationContext>(opt =>
-            {
-                opt.UseSqlite("Data Source=database.sqlite");
-            });
-            
+            services.AddDbContext<ApplicationContext>(opt => { opt.UseSqlite("Data Source=database.sqlite"); });
+
             services.AddEntityDeleteInterceptor(Assembly.GetExecutingAssembly());
         }
 
@@ -31,14 +28,11 @@ namespace Borda.EntityDeleteInterceptor.AspNetCore
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             AutoMigrate(app);
         }
-        
+
         private static void AutoMigrate(IApplicationBuilder app)
         {
             using var serviceScope = app.ApplicationServices.CreateScope();
