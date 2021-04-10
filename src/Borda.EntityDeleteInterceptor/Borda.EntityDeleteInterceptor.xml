@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Borda.EntityDeleteInterceptor</name>
+    </assembly>
+    <members>
+        <member name="M:Borda.EntityDeleteInterceptor.Extensions.AddEntityDeleteInterceptor(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Reflection.Assembly[])">
+            <summary>
+            Scans and adds <see cref="T:Borda.EntityDeleteInterceptor.IEntityDeleteInterceptor`1"/> implementation instances to the service provider as scoped.
+            </summary>
+            <param name="services">to add services to.</param>
+            <param name="assemblies">Assemblies to scan <see cref="T:Borda.EntityDeleteInterceptor.IEntityDeleteInterceptor`1"/> implementations.</param>
+        </member>
+        <member name="M:Borda.EntityDeleteInterceptor.Extensions.AddEntityDeleteInterceptors(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,System.IServiceProvider)">
+            <summary>
+            Adds the interceptor to handle <see cref="T:Borda.EntityDeleteInterceptor.IEntityDeleteInterceptor`1"/> DeletingEntity method.
+            </summary>
+            <param name="builder">to add interceptor.</param>
+            <param name="serviceProvider">To get registered <see cref="T:Borda.EntityDeleteInterceptor.IEntityDeleteInterceptor`1"/> implementations.</param>
+            <returns> The same builder instance so that multiple calls can be chained. </returns>
+        </member>
+        <member name="T:Borda.EntityDeleteInterceptor.IEntityDeleteInterceptor`1">
+            <summary>
+            Allows deletion interception for given entity type.
+            </summary>
+            <typeparam name="TEntity">Type of entity class.</typeparam>
+        </member>
+        <member name="M:Borda.EntityDeleteInterceptor.IEntityDeleteInterceptor`1.DeletingEntity(`0)">
+            <summary>
+            Called at the start of DbContext.SaveChanges for each entity if entity state is Deleted.
+            </summary>
+            <param name="entity">Tracked entity instance.</param>
+        </member>
+    </members>
+</doc>

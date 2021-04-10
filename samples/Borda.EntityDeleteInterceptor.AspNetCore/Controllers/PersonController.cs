@@ -27,7 +27,7 @@ namespace Borda.EntityDeleteInterceptor.AspNetCore.Controllers
         {
             _context.Persons.Add(person);
             _context.SaveChanges();
-            return Ok();
+            return Ok(person);
         }
 
         [HttpDelete("{id}")]

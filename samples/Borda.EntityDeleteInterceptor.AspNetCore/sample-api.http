@@ -12,5 +12,5 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5000/api/person/2
+DELETE http://localhost:5000/api/person/1
 Content-Type: application/json

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,10 @@ namespace Borda.EntityDeleteInterceptor
         {
             services.Scan(scan =>
             {
-                assemblies ??= new[] {Assembly.GetEntryAssembly()};
+                if (!assemblies.Any())
+                {
+                    assemblies = new[] {Assembly.GetEntryAssembly()};
+                }
 
                 scan.FromAssemblies(assemblies)
                     .AddClasses(classes => classes.AssignableTo(typeof(IEntityDeleteInterceptor<>)))
@@ -25,7 +29,7 @@ namespace Borda.EntityDeleteInterceptor
                     .WithScopedLifetime();
             });
         }
-        
+
         /// <summary>
         /// Adds the interceptor to handle <see cref="IEntityDeleteInterceptor{TEntity}"/> DeletingEntity method.
         /// </summary>

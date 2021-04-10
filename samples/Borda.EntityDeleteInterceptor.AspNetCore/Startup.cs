@@ -16,7 +16,7 @@ namespace Borda.EntityDeleteInterceptor.AspNetCore
 
             services.AddDbContext<ApplicationContext>(opt => { opt.UseSqlite("Data Source=database.sqlite"); });
 
-            services.AddEntityDeleteInterceptor(Assembly.GetExecutingAssembly());
+            services.AddEntityDeleteInterceptor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
