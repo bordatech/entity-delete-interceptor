@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Borda.EntityDeleteInterceptor
 {
-    internal class EntityDeleteInterceptor : ISaveChangesInterceptor
+    internal class EntityDeleteInterceptor : SaveChangesInterceptor
     {
         private readonly IServiceProvider _serviceProvider;
 
@@ -17,39 +17,18 @@ namespace Borda.EntityDeleteInterceptor
             _serviceProvider = serviceProvider;
         }
 
-        public InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
+        public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
         {
             InvokeInterceptorServices(eventData.Context);
             return result;
         }
 
-        public int SavedChanges(SaveChangesCompletedEventData eventData, int result)
-        {
-            return result;
-        }
-
-        public void SaveChangesFailed(DbContextErrorEventData eventData)
-        {
-        }
-
-        public ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData,
+        public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData,
             InterceptionResult<int> result,
             CancellationToken cancellationToken = new CancellationToken())
         {
             InvokeInterceptorServices(eventData.Context);
             return ValueTask.FromResult(result);
-        }
-
-        public ValueTask<int> SavedChangesAsync(SaveChangesCompletedEventData eventData, int result,
-            CancellationToken cancellationToken = new CancellationToken())
-        {
-            return ValueTask.FromResult(result);
-        }
-
-        public Task SaveChangesFailedAsync(DbContextErrorEventData eventData,
-            CancellationToken cancellationToken = new CancellationToken())
-        {
-            return Task.CompletedTask;
         }
 
         private void InvokeInterceptorServices(DbContext context)
